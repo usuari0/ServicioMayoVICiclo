@@ -1,42 +1,43 @@
 package com.idat.MayoServicioPrueba.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.idat.MayoServicioPrueba.model.Producto;
-import com.idat.MayoServicioPrueba.repository.ProductoRepositoryImpl;
+import com.idat.MayoServicioPrueba.repository.ProductoRepository;
 
 @Service
 public class ProductoServiceImpl implements ProductoService{
 
 	@Autowired
-	ProductoRepositoryImpl repository;
+	ProductoRepository repository;
 	
 	@Override
 	public void guardarProducto(Producto producto) {
-		repository.guardarProducto(producto);
+		repository.save(producto);
 	}
 
 	@Override
 	public void actualizarProducto(Producto producto) {
-		repository.actualizarProducto(producto);
+		repository.saveAndFlush(producto);
 	}
 
 	@Override
 	public void eliminarProducto(Integer id) {
-		repository.eliminarProducto(id);
+		repository.deleteById(id);
 	}
 
 	@Override
 	public List<Producto> listarProducto() {
-		return repository.listarProducto();
+		return repository.findAll();
 	}
 
 	@Override
-	public Producto obtenerProductoId(Integer id) {
-		return repository.obtenerProductoId(id);
+	public Optional<Producto> obtenerProductoId(Integer id) {
+		return repository.findById(id);/*.orElse(null)*/
 	}
 
 }

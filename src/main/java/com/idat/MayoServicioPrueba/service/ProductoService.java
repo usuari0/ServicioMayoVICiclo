@@ -1,6 +1,7 @@
 package com.idat.MayoServicioPrueba.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.idat.MayoServicioPrueba.model.Producto;
 
@@ -9,5 +10,5 @@ public interface ProductoService {
 	void actualizarProducto(Producto producto);
 	void eliminarProducto(Integer id);
 	List<Producto> listarProducto();
-	Producto obtenerProductoId(Integer id);
+	Optional<Producto> obtenerProductoId(Integer id);
 }
